@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ASP.NET_FinalTermExam.Models.Customers>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>客戶資料查詢</h2>
+@using (Html.BeginForm("Serach", "Customers"))
+{
+    <table>
+        <tr>
+            <td>
+                客戶編號
+            </td>
+            <td>
+                @Html.TextBox("customerID")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                客戶名稱
+            </td>
+            <td>
+                @Html.TextBox("companyName")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                聯絡人姓名
+            </td>
+            <td>
+                @Html.TextBox("contactName")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                聯絡人職稱
+            </td>
+            <td>
+                @Html.DropDownList("contactTitle", "All")
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" value="搜尋" />
+                <input type="reset" value="清除" id="clear" />
+                @Html.ActionLink("Create New", "Create")
+            </td>
+        </tr>
+        
+    </table>
+}
+
+<h3>查詢結果</h3>
+<table class="grid">
+    <tr>
+        <th>
+            編號
+        </th>
+        <th>
+            名稱
+        </th>
+        <th>
+            聯絡人姓名
+        </th>
+        <th>
+            聯絡人職稱
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+        </td>
+    </tr>
+}
+
+</table>
